@@ -1,0 +1,21 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/cpp
+{
+	"name": "Build container for AUM on Ubuntu",
+	"build": {
+		"dockerfile": "../../build/dockers/ubuntu.Dockerfile"
+	},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-vscode.cpptools",
+				"ms-vscode.makefile-tools",
+				"ms-vscode.cmake-tools",
+				"ms-vscode.cpptools-extension-pack",
+				"DmitryDorofeev.empty-indent",
+				"cschlosser.doxdocgen"
+			]
+		}
+	},
+	"postCreateCommand": "apt install -y git gdb"
+}
