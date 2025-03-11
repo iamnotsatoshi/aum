@@ -10,7 +10,7 @@ Test failed at line 31 in file tests/component/src/test_suite_simple.c: AUM_FAIL
 	</testcase>
 	<testcase classname="test_suite_simple" name="AUM_ASSERT_EQUAL__should_fail_with_different_values" time="0.0">
 		<failure>
-Test failed at line 41 in file tests/component/src/test_suite_simple.c: AUM_ASSERT_EQUAL(1, 0) - 
+Test failed at line 41 in file tests/component/src/test_suite_simple.c: AUM_ASSERT_EQUAL(1, 0) -
 		</failure>
 	</testcase>
 	<testcase classname="test_suite_simple" name="AUM_ASSERT_STRING_EQUAL__should_succeed_with_same_strings" time="0.0">

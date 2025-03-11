@@ -9,13 +9,12 @@ License:    LGPLv2+
 
 %prep
 
-
 %build
 
 %install
 mkdir -p %{buildroot}/usr
-cp -r ./usr/include %{buildroot}%{_includedir}
-cp -r ./usr/lib64 %{buildroot}/%{_libdir}
+cp -r ./usr/local/include %{buildroot}%{_includedir}
+cp -r ./usr/local/lib %{buildroot}/%{_libdir}
 
 %files
 %{_includedir}

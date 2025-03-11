@@ -7,7 +7,7 @@ Suite: test_suite_simple...
 		tests/component/src/test_suite_simple.c:31 - AUM_FAIL - Echec volontaire du test000
 	Test: AUM_ASSERT_EQUAL__should_succeed_with_same_values... SUCCESS
 	Test: AUM_ASSERT_EQUAL__should_fail_with_different_values... FAILED
-		tests/component/src/test_suite_simple.c:41 - AUM_ASSERT_EQUAL(1, 0) - 
+		tests/component/src/test_suite_simple.c:41 - AUM_ASSERT_EQUAL(1, 0) -
 	Test: AUM_ASSERT_STRING_EQUAL__should_succeed_with_same_strings... SUCCESS
 	Test: AUM_ASSERT_STRING_EQUAL__should_fail_with_different_strings... FAILED
 		tests/component/src/test_suite_simple.c:51 - AUM_ASSERT_STRING_EQUAL("true", "false") - Expected "true", but was "false"

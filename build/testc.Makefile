@@ -96,8 +96,9 @@ runtestc: $(OUTPUT_TESTC_BINARY) | $(OUTPUT_TESTC_RESULT_DIR)
 	$(V) LD_LIBRARY_PATH=$(TESTC_LIBRARY_PATH) $(OUTPUT_TESTC_BINARY) > $(OUTPUT_TESTC_RESULT_FILE)
 	$(V) sed s/{VERSION}/$(VERSION)/ $(TESTC_DATA_DIR)/reference_testc_output.tpl > $(OUTPUT_TESTC_REFERENCE_RESULT_FILE)
 	$(V) LD_LIBRARY_PATH=$(TESTC_LIBRARY_PATH) $(OUTPUT_TESTC_BINARY) -o $(RESULTS_TESTC_REPORT)
-	$(V) diff $(OUTPUT_TESTC_REFERENCE_RESULT_FILE) $(OUTPUT_TESTC_RESULT_FILE)
-	$(V) diff $(OUTPUT_TESTC_REFERENCE_REPORT) $(RESULTS_TESTC_REPORT)
+# Ignoring the difference in spaces helps between OSes
+	$(V) diff --ignore-space-change $(OUTPUT_TESTC_REFERENCE_RESULT_FILE) $(OUTPUT_TESTC_RESULT_FILE)
+	$(V) diff --ignore-space-change $(OUTPUT_TESTC_REFERENCE_REPORT) $(RESULTS_TESTC_REPORT)
 	$(CC) $(CFLAGS) -c $(TEST_CASES)/test_suite_unused_test.c && exit 1 || echo 'OK'
 	$(MKDIR) $(RESULT_TEST_CASES_DIR)
 	$(CC) $(TESTC_CFLAGS) -fprofile-arcs -c $(TEST_CASES)/test_suite_aum_should_not_generate_leaks_with_option_fprofile-arcs.c -o $(RESULT_TEST_CASES_DIR)/test_suite_aum_should_not_generate_leaks_with_option_fprofile-arcs.o
@@ -107,6 +108,8 @@ runtestc: $(OUTPUT_TESTC_BINARY) | $(OUTPUT_TESTC_RESULT_DIR)
 	$(CC) $(CFLAGS) -c $(TEST_CASES)/test_suite_invalid_mock_signature.c && exit 1 || echo 'OK'
 	$(CC) $(CFLAGS) -c $(TEST_CASES)/test_suite_aum_mock_create_with_many_parameters.c -o $(RESULT_TEST_CASES_DIR)/test_suite_aum_mock_create_with_many_parameters.o
 	$(LD) $(RESULT_TEST_CASES_DIR)/test_suite_aum_mock_create_with_many_parameters.o -Wl,-wrap,function_with_many_parameters -L$(RESULTS_BIN_DIR) -l$(NAME) -o $(RESULT_TEST_CASES_DIR)/test_suite_aum_mock_create_with_many_parameters
+# Clearly state that tests succeeded because expected failures shown above are confusing
+	@echo "SUCCESS"
 
 $(OUTPUT_TESTC_RESULT_DIR):
 	@ $(MKDIR) $@
@@ -121,6 +124,8 @@ valgrindc: $(OUTPUT_TESTC_BINARY) $(RESULTS_REPORT_DIR)
 	$(V) LD_LIBRARY_PATH=$(TESTC_LIBRARY_PATH) $(VALGRIND) $(VALGRIND_TESTC_OPTIONS) $(OUTPUT_TESTC_BINARY) -o $(RESULTS_TESTC_REPORT)
 	$(V) $(CLEAN_VALGRIND_REPORT) $(VALGRIND_TESTC_REPORT_PATH)
 	$(V) $(GENERATE_FDLEAK_REPORT) $(VALGRIND_TESTC_LOG_PATH) $(VALGRIND_TESTC_REPORT_PATH) $(FDLEAK_TESTC_REPORT_PATH)
+# Clearly state that tests succeeded because expected failures shown above are confusing
+	@echo "SUCCESS"
 
 .PHONY: runtestc valgrindc
 

@@ -26,6 +26,10 @@
 
 bool aum_test_suite_has_name(aum_test_suite_t *this, const char *name)
 {
+    if (this->name == NULL)
+        return -1;
+    else if (name == NULL)
+        return 1;
     return !strcmp(this->name, name);
 }
 

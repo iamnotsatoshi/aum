@@ -50,7 +50,7 @@ rpm: $(RESULTS_PKG_CONTENT_DIR) | $(RESULTS_ARTIFACTS_DIR)
 	$(V) $(MKDIR) $(RESULTS_RPM_METADATA_DIR)
 	$(V) $(MKDIR) /root/rpmbuild/BUILD
 	$(V) cp -r $(RESULTS_PKG_CONTENT_DIR)/* /root/rpmbuild/BUILD
-	$(V) sed 's|{NAME}|$(NAME)|; s|{VERSION}|$(VERSION)|; s|{DESCRIPTION}|$(DESCRIPTION)|; s|{DEPENDS}|$(DEPENDS)|;' $(SCRIPT_DIR)/packaging/rpm/aum.spec.tpl > $(RESULTS_RPM_METADATA_DIR)/aum.spec
+	$(V) sed 's|{NAME}|$(NAME)|; s|{VERSION}|$(VERSION)|; s|{DESCRIPTION}|$(DESCRIPTION)|;' $(SCRIPT_DIR)/packaging/rpm/aum.spec.tpl > $(RESULTS_RPM_METADATA_DIR)/aum.spec
 	$(V) rpmbuild -bb $(RESULTS_RPM_METADATA_DIR)/aum.spec
 	$(V) cp /root/rpmbuild/RPMS/x86_64/aum-$(VERSION)-1.x86_64.rpm $(RESULTS_ARTIFACTS_DIR)
 
